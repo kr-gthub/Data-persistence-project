@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,10 +10,12 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
+    public TMPro.TMP_InputField usernameText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        usernameText.text = PersistenceManager.INSTANCE.userName;
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         Debug.Log(value);
         PersistenceManager.INSTANCE.userName = value;
+        PersistenceManager.INSTANCE.score = 0;
     }
 
     public void StartGame()

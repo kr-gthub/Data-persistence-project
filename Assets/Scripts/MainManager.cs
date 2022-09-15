@@ -74,7 +74,13 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+        if(m_Points > PersistenceManager.INSTANCE.score)
+        {
+            PersistenceManager.INSTANCE.score = m_Points;
+        }
         GameOverText.SetActive(true);
+        UpdateBestScoreText();
+        PersistenceManager.INSTANCE.SaveBestScore();
     }
 
     public void MenuClicked()
@@ -84,6 +90,6 @@ public class MainManager : MonoBehaviour
 
     private void UpdateBestScoreText()
     {
-        BestScoreText.text = "Best Score: " + PersistenceManager.INSTANCE.userName + ": 0";
+        BestScoreText.text = "Best Score: " + PersistenceManager.INSTANCE.userName + ": " + PersistenceManager.INSTANCE.score;
     }
 }
